@@ -17,11 +17,12 @@ public class ServletLeilao extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //para pegar os dados da requisição:
 
-        String user = request.getParameter("nome");
-        String lance = request.getParameter("lance");
+        String produto = request.getParameter("produto");
+        String valor = request.getParameter("valor");
 
         //vamos enviar os dados ao JSP:
-        request.setAttribute("user", user);
+        request.setAttribute("produto", produto);
+        request.setAttribute("valor", valor);
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/view.jsp");
         dispatcher.forward(request, response);
     }

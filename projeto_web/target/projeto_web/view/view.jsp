@@ -27,6 +27,12 @@
         <input type="submit" value="Enviar">
     </form>
 
+    <% %>
+
+    <p>valor recebido do ultimo lance enviado:</p>
+    <p>produto: <%= request.getAttribute("produto") %></p> 
+    <p>valor: <%= request.getAttribute("valor") %></p> 
+
 
 </body>
 </html>
