@@ -19,7 +19,12 @@
 
     <form action="leilao" method="post">
         <label for="produto">Nome do Produto:</label>
-        <input type="text" id="produto" name="produto"><br><br>
+    <select id="produto" name="produto">
+        <option value="1">Produto 1</option> <%--produto 1 de valor id=1--%>
+        <option value="2">Produto 2</option>
+        <option value="3">Produto 3</option>
+        <option value="4">Produto 4</option>
+    </select><br><br>
 
         <label for="valor">Valor do Produto:</label>
         <input type="number" id="valor" name="valor"><br><br>
