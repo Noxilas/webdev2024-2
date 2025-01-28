@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet; //para mexer com o http
 import javax.servlet.http.HttpServletRequest; //http solicitação
 import javax.servlet.http.HttpServletResponse; //http resposta
 import javax.servlet.RequestDispatcher; //para encaminhar ou inserir outra pagina
+import java.util.List; //facilitar na ordenação
+import java.util.Comparator; //ordenação
 
 //imports que ainda nao tenho!!! (coloquei uns genericos, nao deve precisar de tudo)
 //import model.leilaoService;
@@ -62,6 +64,30 @@ public class leilaoController extends HttpServlet{
         //escrever a mensagem
         response.getWriter().write("Lance registrado com sucesso!");
 
+        //prestar atenção aqui e ver se não precisa encaixar um
+        //RequestDispatcher dispatcher = request.getRequestDispatcher("view.jsp");
+        //dispatcher.forward(request, response);
+
     }
     
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //primeiro vamos buscar os lances no BD
+        List<Lance> lances = lanceDAO.buscarLances(); //inventei o nome da função, podemos mudar dps
+
+        //agora que recuperamos os lances, precisamos ordená-los em ordem descrescente
+        //vou usar um sort para isso
+        //aqui, vamos usar o método sort da interface list de java, que ordena os elementos da lista
+        //vamos colocar um comparador como parâmetro para comparar as variaveis do tipo double
+        //esse comparativo vai retornar 1 se a > b; -1 se a < b e 0 se a == b
+        //estamos usando o a.getLance e b.getLance como a e b no compare
+        //como é pra ser descrescente, podemos inverter a e b, como eu fiz
+        //desse modo, se b > a, compare = 1, então b deveria vir antes de a, mas com a inversão, o menor virá antes
+        //isso fez sentido na minha cabeça!!!
+        lances.sort((a,b)-> Double.compare(b.getLance(), a.getLance()));
+
+        //depois de ordenar, precisamos retornar a lista com os lances para o view
+        //vou usar um forward 
+
+    }
 }
