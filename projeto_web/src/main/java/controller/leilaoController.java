@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse; //http resposta
 import javax.servlet.RequestDispatcher; //para encaminhar ou inserir outra pagina
 import java.util.List; //facilitar na ordenação
 import java.util.Comparator; //ordenação
+import com.google.gson.Gson; //conversão JSON
 
 //imports que ainda nao tenho!!! (coloquei uns genericos, nao deve precisar de tudo)
 //import model.leilaoService;
@@ -21,7 +22,7 @@ import java.util.Comparator; //ordenação
 @WebServlet("/leilao")
 public class leilaoController extends HttpServlet{
     //criar uma variável DAO
-    private lanceDAO LanceDAO; //temporário enqt nao tem o model
+    private LanceDAO lanceDAO; //temporário enqt nao tem o model
 
     @Override
     public void init() {
@@ -33,6 +34,7 @@ public class leilaoController extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //lidar com requisições POST
         //vamos começar recuperando dados do formulário
+        //talvez tenha que converter se o request receber string dos 3 atributos
         int idUsuario = request.getParameter("idUsuario");
         int idProduto = request.getParameter("idProduto");
         double valorLance = request.getParameter("valorLance");
@@ -79,15 +81,20 @@ public class leilaoController extends HttpServlet{
         //vou usar um sort para isso
         //aqui, vamos usar o método sort da interface list de java, que ordena os elementos da lista
         //vamos colocar um comparador como parâmetro para comparar as variaveis do tipo double
-        //esse comparativo vai retornar 1 se a > b; -1 se a < b e 0 se a == b
-        //estamos usando o a.getLance e b.getLance como a e b no compare
-        //como é pra ser descrescente, podemos inverter a e b, como eu fiz
-        //desse modo, se b > a, compare = 1, então b deveria vir antes de a, mas com a inversão, o menor virá antes
+        //esse comparativo vai retornar 1 se lance1 > lance2; -1 se lance1 < lance2 e 0 se lance1 == lance2
+        //estamos usando o lance1.getLance e lance2.getLance como lance1 e lance2 no compare
+        //como é pra ser descrescente, podemos inverter lance1 e lance2, como eu fiz
+        //desse modo, se lance2 > lance1, compare = 1, então lance2 deveria vir antes de lance1, mas com a inversão, o menor virá antes
         //isso fez sentido na minha cabeça!!!
-        lances.sort((a,b)-> Double.compare(b.getLance(), a.getLance()));
+        lances.sort((lance1,lance2)-> Double.compare(lance2.getLance(), lance1.getLance()));
 
         //depois de ordenar, precisamos retornar a lista com os lances para o view
-        //vou usar um forward 
+        //como estamos usando o AJAX, vou enviar o arquivo JSON
+        String json = new Gson().toJson(lances);
 
+        //retornar a resposta para o view
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
     }
 }
