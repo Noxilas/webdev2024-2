@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
+<%@page import="utilitarios.Lance"%>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -42,13 +43,14 @@
 
     <p>-----------------------------------------</p>
 
-    <%--<% List<Lance> lances = (List<Lance>)request.getAttribute("lances"); %>--%>
+    <% List<Lance> lances = (List<Lance>)request.getAttribute("lances"); %>
     <%for (Lance lance_recuperado : lances){%>
     <tr>
         <td><%= lance_recuperado.get_nome_produto() %></td>
         <td><%= lance_recuperado.get_id() %></td>
-        <td><%= lance_recuperado.valor() %></td>
+        <td><%= lance_recuperado.get_valor() %></td>
     </tr>
+    <% }%>
 
 </body>
 </html>
