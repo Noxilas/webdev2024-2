@@ -11,7 +11,10 @@
     <title>Leilao</title>
 </head>
 <body>
-    <h1>leilao</h1>
+    <h1>Leilão</h1>
+
+    <h2>Faça seu lance</h2>
+
 
     <%
         List<Produto> produtos = new ArrayList<>();
@@ -23,13 +26,23 @@
     
     <p>Os produtos disponiveis para leilão são:</p>
 
-    <%for (Produto produto_recuperado : produtos){%>
-    <tr>
-        <td><%= produto_recuperado.get_nome() %></td>
-        <td><%= produto_recuperado.get_id() %></td>
-        <br/>
-    </tr>
-    <% }%>
+    <table>
+        <thead>
+            <tr>
+                <th>nome do produto</th>
+                <th>id do produto</th>
+                <th>lance minimo</th>
+            </tr>
+        </thead>
+        <%for (Produto produto_recuperado : produtos){%>
+        <tr>
+            <td><%= produto_recuperado.get_nome() %></td>
+            <td><%= produto_recuperado.get_id() %></td>
+            <td><%= produto_recuperado.get_lance_minimo() %></td>
+            <br/>
+        </tr>
+        <% }%>
+    </table>
 
     <br>
     
@@ -59,16 +72,29 @@
 
     <p>-----------------------------------------</p>
 
+    <h2>Lista de lances (atualizada a cada X segundos)</h2>
+
     <% List<Lance> lances = (List<Lance>)request.getAttribute("lista_de_lances"); %>
     <%if (lances!=null){%>
-    <%for (Lance lance_recuperado : lances){%>
-    <tr>
-        <td><%= lance_recuperado.get_nome_produto() %></td>
-        <td><%= lance_recuperado.get_id() %></td>
-        <td><%= lance_recuperado.get_valor() %></td>
-        <br/>
-    </tr>
-    <% }}%>
+        <table>
+            <thead>
+                <tr>
+                    <th>nome do produto</th>
+                    <th>id do produto</th>
+                    <th>valor do produto</th>
+                </tr>
+            </thead>
+            <tbody>
+            <%for (Lance lance_recuperado : lances){%>
+                <tr>
+                    <td><%= lance_recuperado.get_nome_produto() %></td>
+                    <td><%= lance_recuperado.get_id() %></td>
+                    <td><%= lance_recuperado.get_valor() %></td>
+                    <br/>
+                </tr>
+            <% }}%>
+            </tbody>
+        </table>
 
 </body>
 </html>
