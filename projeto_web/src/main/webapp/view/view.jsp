@@ -20,12 +20,14 @@
 
     <form action="leilao" method="post">
         <label for="produto">Nome do Produto:</label>
-    <select id="produto" name="produto">
+    <select id="id_produto" name="id_produto">
         <option value="1">Produto 1</option> <%--produto 1 de valor id=1--%>
         <option value="2">Produto 2</option>
         <option value="3">Produto 3</option>
         <option value="4">Produto 4</option>
     </select><br><br>
+    <input type="hidden" id="id_cliente" name="id_cliente" value="123"> <%-- contém o ID do cliente, que vou supor o numero fixo "123"por enquanto --%>
+
 
         <label for="valor">Valor do Produto:</label>
         <input type="number" id="valor" name="valor"><br><br>
@@ -40,9 +42,13 @@
 
     <p>-----------------------------------------</p>
 
-  <%--<% List<Lance> lance = (List<Lance>)request.getAttribute("listalances"); %>--%>
-
-
+    <%--<% List<Lance> lances = (List<Lance>)request.getAttribute("lances"); %>--%>
+    <%for (Lance lance_recuperado : lances){%>
+    <tr>
+        <td><%= lance_recuperado.get_nome_produto() %></td>
+        <td><%= lance_recuperado.get_id() %></td>
+        <td><%= lance_recuperado.valor() %></td>
+    </tr>
 
 </body>
 </html>

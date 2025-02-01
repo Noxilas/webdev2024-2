@@ -1,5 +1,8 @@
 package utilitarios;
-
+//esta classe serve para ter os lances que serão recebido pelo view, ou seja, os lances devem conter:
+// -nome do produto
+// -valor do produto
+// -id do produto
 
 public class Lance {
     String nome_produto;
