@@ -96,6 +96,16 @@
             </tbody>
         </table>
 
+        <p>testando ajax: <span id="ajax">não fez nada</span></p>
+
+        <p><input id="btatualizar" value="Atualizar" type="button" onclick="atualizar()"/> </p>
+
+        <script>
+            function atualizar() {
+                document.getElementById("ajax").innerHTML = "funfou";
+            }
+        </script>
+
 </body>
 </html>
 
