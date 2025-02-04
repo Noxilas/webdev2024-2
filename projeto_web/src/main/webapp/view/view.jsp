@@ -18,70 +18,22 @@
 </head>
 <body>
     <h1>Leilão</h1>
+    <div class = "container">
+        <div class="esquerda">
 
-    <h2>Faça seu lance</h2>
-
-
-    <%
-        List<Produto> produtos = new ArrayList<>();
-        produtos.add(new Produto("Carro", 1));
-        produtos.add(new Produto("Moto", 2));
-        produtos.add(new Produto("Lancha", 3));
-        produtos.add(new Produto("Avião", 4));
-    %>
-    
-    <p>Os produtos disponiveis para leilão são:</p>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Nome do Produto</th>
-                    <th>ID do Produto</th>
-                    <th>Valor do Produto</th>
-            </tr>
-        </thead>
-        <%for (Produto produto_recuperado : produtos){%>
-        <tr>
-            <td><%= produto_recuperado.get_nome() %></td>
-            <td><%= produto_recuperado.get_id() %></td>
-            <td><%= produto_recuperado.get_lance_minimo() %></td>
-            <br/>
-        </tr>
-        <% }%>
-    </table>
-
-    <br>
-    
-
-    <form id = "formulario" action="leilao" method="post">
-        <label for="produto">Nome do Produto:</label>
-    <select id="id_produto" name="id_produto">
-        <% for (Produto produto_recuperado : produtos) { %>
-            <option value="<%= produto_recuperado.get_id() %>">
-                <%= produto_recuperado.get_nome() %>
-            </option>
-        <% } %>
-    </select>
-    
-    <br><br>
-    <label for="id_usuario">Id do usuário:</label>
-    <input type="text" id="id_usuario" name="id_usuario" > <%-- contém o ID do cliente, que vou supor o numero fixo "123"por enquanto --%>
-    <br><br>
-
-        <label for="valor">Valor do Produto:</label>
-        <input type="number" id="valor" name="valor"><br><br>
-
-        <input type="submit" id = "botaoenviar" value="Enviar">
-    </form>
+        <h2>Faça seu lance</h2>
 
 
+        <%
+            List<Produto> produtos = new ArrayList<>();
+            produtos.add(new Produto("Carro", 1));
+            produtos.add(new Produto("Moto", 2));
+            produtos.add(new Produto("Lancha", 3));
+            produtos.add(new Produto("Avião", 4));
+        %>
+        
+        <p>Os produtos disponiveis para leilão são:</p>
 
-    <p>-----------------------------------------</p>
-
-    <h2>Lista de lances</h2>
-
-    <% List<Lance> lances = (List<Lance>)request.getAttribute("lista_de_lances"); %>
-    <%if(lances==null){%>
         <table>
             <thead>
                 <tr>
@@ -95,40 +47,85 @@
                 <td><%= produto_recuperado.get_nome() %></td>
                 <td><%= produto_recuperado.get_id() %></td>
                 <td><%= produto_recuperado.get_lance_minimo() %></td>
-                <br/>
+                
             </tr>
             <% }%>
         </table>
-    <%}%>
-    <%if (lances!=null){%>
-        <table id="tabela_de_lances">
-            <thead>
+
+        
+        
+
+        <form id = "formulario" action="leilao" method="post">
+            <label for="produto">Nome do Produto:</label>
+        <select id="id_produto" name="id_produto">
+            <% for (Produto produto_recuperado : produtos) { %>
+                <option value="<%= produto_recuperado.get_id() %>">
+                    <%= produto_recuperado.get_nome() %>
+                </option>
+            <% } %>
+        </select>
+        
+        
+        <label for="id_usuario">Id do usuário:</label>
+        <input type="text" id="id_usuario" name="id_usuario" > <%-- contém o ID do cliente, que vou supor o numero fixo "123"por enquanto --%>
+        
+
+            <label for="valor">Valor do Produto:</label>
+            <input type="number" id="valor" name="valor">
+
+            <input type="submit" id = "botaoenviar" value="Enviar">
+        </form>
+
+
+    </div>
+
+
+
+    <div class = "direita">
+        <h2>Lista de lances</h2>
+
+        <% List<Lance> lances = (List<Lance>)request.getAttribute("lista_de_lances"); %>
+        <%if(lances==null){%>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome do Produto</th>
+                            <th>ID do Produto</th>
+                            <th>Valor do Produto</th>
+                    </tr>
+                </thead>
+                <%for (Produto produto_recuperado : produtos){%>
                 <tr>
-                    <th>Nome do Produto</th>
-                    <th>ID do Produto</th>
-                    <th>Valor do Produto</th>
+                    <td><%= produto_recuperado.get_nome() %></td>
+                    <td><%= produto_recuperado.get_id() %></td>
+                    <td><%= produto_recuperado.get_lance_minimo() %></td>
+                    
                 </tr>
-            </thead>
-            <tbody>
-            <%for (Lance lance_recuperado : lances){%>
-                <tr>
-                    <td><%= lance_recuperado.get_nome_produto() %></td>
-                    <td><%= lance_recuperado.get_id() %></td>
-                    <td><%= lance_recuperado.get_valor() %></td>
-                    <br/>
-                </tr>
-            <% }}%>
-            </tbody>
-        </table>
+                <% }%>
+            </table>
+        <%}%>
+        <%if (lances!=null){%>
+            <table id="tabela_de_lances">
+                <thead>
+                    <tr>
+                        <th>Nome do Produto</th>
+                        <th>ID do Produto</th>
+                        <th>Valor do Produto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <%for (Lance lance_recuperado : lances){%>
+                    <tr>
+                        <td><%= lance_recuperado.get_nome_produto() %></td>
+                        <td><%= lance_recuperado.get_id() %></td>
+                        <td><%= lance_recuperado.get_valor() %></td>
+                                            </tr>
+                <% }}%>
+                </tbody>
+            </table>
 
-
-        <!--  <p><input id="btatualizar" value="Atualizar" type="button" onclick="atualizar()"/> </p> !-->
-
-        <script>
-            
-            
-        </script>
-
+    </div>
+</div>
 </body>
 </html>
 
