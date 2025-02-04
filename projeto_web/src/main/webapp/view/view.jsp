@@ -72,7 +72,7 @@
 
     <p>-----------------------------------------</p>
 
-    <h2>Lista de lances (atualizada a cada X segundos)</h2>
+    <h2>Lista de lances (atualizada a cada 5 segundos)</h2>
 
     <% List<Lance> lances = (List<Lance>)request.getAttribute("lista_de_lances"); %>
     <%if (lances!=null){%>
@@ -102,8 +102,19 @@
 
         <script>
             function atualizar() {
-                document.getElementById("ajax").innerHTML = "funfou";
+                let elemento = document.getElementById("ajax")
+                if(elemento.innerHTML === "não fez nada"){
+                    elemento.innerHTML = "foi";
+                }
+                else if(elemento.innerHTML === "foi"){
+                    elemento.innerHTML = "voltou";
+                }
+                else if (elemento.innerHTML === "voltou"){ 
+                    elemento.innerHTML = "foi";
+                }
+
             }
+            setInterval(atualizar, 5000);
         </script>
 
 </body>
