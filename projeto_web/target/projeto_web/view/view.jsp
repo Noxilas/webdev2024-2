@@ -29,9 +29,9 @@
     <table>
         <thead>
             <tr>
-                <th>nome do produto</th>
-                <th>id do produto</th>
-                <th>lance minimo</th>
+                <th>Nome do Produto</th>
+                    <th>ID do Produto</th>
+                    <th>Valor do Produto</th>
             </tr>
         </thead>
         <%for (Produto produto_recuperado : produtos){%>
@@ -82,9 +82,9 @@
         <table id="tabela_de_lances">
             <thead>
                 <tr>
-                    <th>nome do produto</th>
-                    <th>id do produto</th>
-                    <th>valor do produto</th>
+                    <th>Nome do Produto</th>
+                    <th>ID do Produto</th>
+                    <th>Valor do Produto</th>
                 </tr>
             </thead>
             <tbody>
@@ -99,10 +99,9 @@
             </tbody>
         </table>
 
-        <p>testando ajax: <span id="ajax">não fez nada</span></p>
 
-        <p><input id="btatualizar" value="Atualizar" type="button" onclick="atualizar()"/> </p>
-
+        <!--  <p><input id="btatualizar" value="Atualizar" type="button" onclick="atualizar()"/> </p> !-->
+        <p><input id="btatualizar" value="Atualizar" type="button" onclick="loadDoc()"/> </p>
         <script>
             function loadDoc(){
                 const xhttp = new XMLHttpRequest();
@@ -125,13 +124,6 @@
                     <th>ID do Produto</th>
                     <th>Valor do Produto</th>
                 </tr>`;
-
-                console.log(lances);
-                console.log(lances[0]);
-                console.log(lances[0].nome_produto);
-
-                tabela.innerHTML += "<tr><td>" + lances[0].nome_produto + "</td><td>teste</td><td>teste</td></tr>";
-
                 
                 lances.forEach(lance => {
                     let linha = "<tr><td>" + lance.nome_produto + "</td><td>" + lance.id_produto + "</td><td>" +lance.valor + "</td></tr>";
@@ -139,7 +131,7 @@
                 });
             }
 
-            setInterval(loadDoc, 2000);
+            //setInterval(loadDoc, 2000);
         </script>
 
 </body>
