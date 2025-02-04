@@ -9,6 +9,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Leilao</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body>
     <h1>Leilão</h1>
@@ -47,7 +49,7 @@
     <br>
     
 
-    <form action="leilao" method="post">
+    <form id = "formulario" action="leilao" method="post">
         <label for="produto">Nome do Produto:</label>
     <select id="id_produto" name="id_produto">
         <% for (Produto produto_recuperado : produtos) { %>
@@ -65,7 +67,7 @@
         <label for="valor">Valor do Produto:</label>
         <input type="number" id="valor" name="valor"><br><br>
 
-        <input type="submit" value="Enviar">
+        <input type="submit" id = "botaoenviar" value="Enviar">
     </form>
 
 
@@ -76,7 +78,23 @@
 
     <% List<Lance> lances = (List<Lance>)request.getAttribute("lista_de_lances"); %>
     <%if(lances==null){%>
-        <p>Nenhum lance feito ainda.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome do Produto</th>
+                        <th>ID do Produto</th>
+                        <th>Valor do Produto</th>
+                </tr>
+            </thead>
+            <%for (Produto produto_recuperado : produtos){%>
+            <tr>
+                <td><%= produto_recuperado.get_nome() %></td>
+                <td><%= produto_recuperado.get_id() %></td>
+                <td><%= produto_recuperado.get_lance_minimo() %></td>
+                <br/>
+            </tr>
+            <% }%>
+        </table>
     <%}%>
     <%if (lances!=null){%>
         <table id="tabela_de_lances">
@@ -101,11 +119,20 @@
 
 
         <!--  <p><input id="btatualizar" value="Atualizar" type="button" onclick="atualizar()"/> </p> !-->
-        <p><input id="btatualizar" value="Atualizar" type="button" onclick="loadDoc()"/> </p>
+
         <script>
+            function desabilitar_botao(){
+                    $("#botaoenviar").prop("disabled", true);
+            }
+
+            function habilitar_botao(){
+                    $("#botaoenviar").prop("disabled", false);
+            }
+
+
             function loadDoc(){
                 const xhttp = new XMLHttpRequest();
-                
+                desabilitar_botao();
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         atualizar(JSON.parse(this.responseText)); // Converte JSON para objeto
@@ -131,7 +158,9 @@
                 });
             }
 
-            //setInterval(loadDoc, 2000);
+            setInterval(loadDoc, 15000);
+            setInterval(habilitar_botao, 17000);
+            
         </script>
 
 </body>
