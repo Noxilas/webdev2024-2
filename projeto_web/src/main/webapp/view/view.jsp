@@ -78,7 +78,7 @@
     <%if(lances==null){%>
         <p>Nenhum lance feito ainda.</p>
     <%}%>
-    
+    <%if (lances!=null){%>
         <table id="tabela_de_lances">
             <thead>
                 <tr>
@@ -87,7 +87,6 @@
                     <th>valor do produto</th>
                 </tr>
             </thead>
-            <%if(lances!=null){%>
             <tbody>
             <%for (Lance lance_recuperado : lances){%>
                 <tr>
@@ -128,9 +127,7 @@
                 </tr>`;
 
                 console.log(lances);
-
-                body = document.getElementById("body_tabela_de_lances")
-                body.innerHTML += `<tr>
+                tabela.innerHTML += `<tr>
                         <td>${lances[0].nome_produto}</td>
                         <td>teste</td>
                         <td>teste</td>
@@ -147,7 +144,7 @@
                 });*/
             }
 
-            if(flag==true)setInterval(loadDoc, 2000);
+            setInterval(loadDoc, 2000);
         </script>
 
 </body>
