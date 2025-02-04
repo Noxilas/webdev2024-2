@@ -75,8 +75,11 @@
     <h2>Lista de lances (atualizada a cada 5 segundos)</h2>
 
     <% List<Lance> lances = (List<Lance>)request.getAttribute("lista_de_lances"); %>
-    <%if (lances!=null){%>
-        <table>
+    <%if(lances==null){%>
+        <p>Nenhum lance feito ainda.</p>
+    <%}%>
+    
+        <table id="tabela_de_lances">
             <thead>
                 <tr>
                     <th>nome do produto</th>
@@ -84,6 +87,7 @@
                     <th>valor do produto</th>
                 </tr>
             </thead>
+            <%if(lances!=null){%>
             <tbody>
             <%for (Lance lance_recuperado : lances){%>
                 <tr>
@@ -101,20 +105,49 @@
         <p><input id="btatualizar" value="Atualizar" type="button" onclick="atualizar()"/> </p>
 
         <script>
-            function atualizar() {
-                let elemento = document.getElementById("ajax")
-                if(elemento.innerHTML === "não fez nada"){
-                    elemento.innerHTML = "foi";
-                }
-                else if(elemento.innerHTML === "foi"){
-                    elemento.innerHTML = "voltou";
-                }
-                else if (elemento.innerHTML === "voltou"){ 
-                    elemento.innerHTML = "foi";
-                }
+            function loadDoc(){
+                const xhttp = new XMLHttpRequest();
+                
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        atualizar(JSON.parse(this.responseText)); // Converte JSON para objeto
+                    }
+                };
 
+                
+                xhttp.open("GET", "leilao", true);
+                xhttp.send();
             }
-            setInterval(atualizar, 5000);
+
+            function atualizar(lances) {
+                let tabela = document.getElementById("tabela_de_lances"); 
+                tabela.innerHTML = `<tr>
+                    <th>Nome do Produto</th>
+                    <th>ID do Produto</th>
+                    <th>Valor do Produto</th>
+                </tr>`;
+
+                console.log(lances);
+
+                body = document.getElementById("body_tabela_de_lances")
+                body.innerHTML += `<tr>
+                        <td>${lances[0].nome_produto}</td>
+                        <td>teste</td>
+                        <td>teste</td>
+                    </tr>`;
+
+                /*
+                lances.forEach(lance => {
+                    let linha = `<tr>
+                        <td>${lance.nome_produto}</td>
+                        <td>${lance.id_produto}</td>
+                        <td>${lance.valor}</td>
+                    </tr>`;
+                    tabela.innerHTML += linha;
+                });*/
+            }
+
+            if(flag==true)setInterval(loadDoc, 2000);
         </script>
 
 </body>

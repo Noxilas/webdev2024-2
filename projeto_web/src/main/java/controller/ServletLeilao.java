@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.Cookie; // classe java que permite usar cookies
 import javax.servlet.http.HttpServletResponse;
+import com.google.gson.Gson; //conversão JSON
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +67,42 @@ public class ServletLeilao extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //primeiro vamos buscar os lances no BD
+        //List<Lance> lances = lanceDAO.buscarLances(); //inventei o nome da função, podemos mudar dps
+ 
+        //vamos fazer uma lista so pra teste
+        // Criando a lista de lances
+        List<Lance> lances = new ArrayList<>();
+
+        // Adicionando objetos à lista
+        lances.add(new Lance("sorvete de cupuaçu", 5, 15));
+        lances.add(new Lance("sorvete de açaí", 10, 5));
+        lances.add(new Lance("sorvete da ufscar", 100, 1));
+
+
+
+        //agora que recuperamos os lances, precisamos ordená-los em ordem descrescente
+        //vou usar um sort para isso
+        //aqui, vamos usar o método sort da interface list de java, que ordena os elementos da lista
+        //vamos colocar um comparador como parâmetro para comparar as variaveis do tipo double
+        //esse comparativo vai retornar 1 se lance1 > lance2; -1 se lance1 < lance2 e 0 se lance1 == lance2
+        //estamos usando o lance1.getLance e lance2.getLance como lance1 e lance2 no compare
+        //como é pra ser descrescente, podemos inverter lance1 e lance2, como eu fiz
+        //desse modo, se lance2 > lance1, compare = 1, então lance2 deveria vir antes de lance1, mas com a inversão, o menor virá antes
+        //isso fez sentido na minha cabeça!!!
+        //lances.sort((lance1,lance2)-> Double.compare(lance2.getLance(), lance1.getLance()));
+
+        //depois de ordenar, precisamos retornar a lista com os lances para o view
+        //como estamos usando o AJAX, vou enviar o arquivo JSON
+        String json = new Gson().toJson(lances);
+
+        //retornar a resposta para o view
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+    }
 
 
 }
