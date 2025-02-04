@@ -10,7 +10,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Leilao</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--<link rel="stylesheet" type="text/css"  href="personalizacao.css">-->
+    <link rel="stylesheet" type="text/css"  href="view/personalizacao.css">
+    <script src="view/testandoajax.js"></script>
 
+    <!-- <link rel="stylesheet" href="/meuProjeto/css/styles.css">-->
 </head>
 <body>
     <h1>Leilão</h1>
@@ -74,7 +78,7 @@
 
     <p>-----------------------------------------</p>
 
-    <h2>Lista de lances (atualizada a cada 5 segundos)</h2>
+    <h2>Lista de lances</h2>
 
     <% List<Lance> lances = (List<Lance>)request.getAttribute("lista_de_lances"); %>
     <%if(lances==null){%>
@@ -121,45 +125,7 @@
         <!--  <p><input id="btatualizar" value="Atualizar" type="button" onclick="atualizar()"/> </p> !-->
 
         <script>
-            function desabilitar_botao(){
-                    $("#botaoenviar").prop("disabled", true);
-            }
-
-            function habilitar_botao(){
-                    $("#botaoenviar").prop("disabled", false);
-            }
-
-
-            function loadDoc(){
-                const xhttp = new XMLHttpRequest();
-                desabilitar_botao();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        atualizar(JSON.parse(this.responseText)); // Converte JSON para objeto
-                    }
-                };
-
-                
-                xhttp.open("GET", "leilao", true);
-                xhttp.send();
-            }
-
-            function atualizar(lances) {
-                let tabela = document.getElementById("tabela_de_lances"); 
-                tabela.innerHTML = `<tr>
-                    <th>Nome do Produto</th>
-                    <th>ID do Produto</th>
-                    <th>Valor do Produto</th>
-                </tr>`;
-                
-                lances.forEach(lance => {
-                    let linha = "<tr><td>" + lance.nome_produto + "</td><td>" + lance.id_produto + "</td><td>" +lance.valor + "</td></tr>";
-                    tabela.innerHTML += linha;
-                });
-            }
-
-            setInterval(loadDoc, 15000);
-            setInterval(habilitar_botao, 17000);
+            
             
         </script>
 
