@@ -74,7 +74,7 @@
 
     <p>-----------------------------------------</p>
 
-    <h2>Lista de lances (atualizada a cada 5 segundos)</h2>
+    <h2>Lista de lances</h2>
 
     <% List<Lance> lances = (List<Lance>)request.getAttribute("lista_de_lances"); %>
     <%if(lances==null){%>
