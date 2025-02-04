@@ -78,7 +78,7 @@
     <%if(lances==null){%>
         <p>Nenhum lance feito ainda.</p>
     <%}%>
-    
+    <%if (lances!=null){%>
         <table id="tabela_de_lances">
             <thead>
                 <tr>
@@ -87,7 +87,6 @@
                     <th>valor do produto</th>
                 </tr>
             </thead>
-            <%if(lances!=null){%>
             <tbody>
             <%for (Lance lance_recuperado : lances){%>
                 <tr>
@@ -102,14 +101,9 @@
 
         <p>testando ajax: <span id="ajax">não fez nada</span></p>
 
-        <p><input id="btatualizar" value="Atualizar" type="button" onclick="flagar"/> </p>
+        <p><input id="btatualizar" value="Atualizar" type="button" onclick="atualizar()"/> </p>
 
         <script>
-            let flag = false;
-
-            function flagar(){
-                flag=true;
-            }
             function loadDoc(){
                 const xhttp = new XMLHttpRequest();
                 
@@ -133,15 +127,13 @@
                 </tr>`;
 
                 console.log(lances);
-
-                body = document.getElementById("body_tabela_de_lances")
-                body.innerHTML += `<tr>
+                tabela.innerHTML += `<tr>
                         <td>${lances[0].nome_produto}</td>
                         <td>teste</td>
                         <td>teste</td>
                     </tr>`;
 
-                /*
+                
                 lances.forEach(lance => {
                     let linha = `<tr>
                         <td>${lance.nome_produto}</td>
@@ -149,11 +141,10 @@
                         <td>${lance.valor}</td>
                     </tr>`;
                     tabela.innerHTML += linha;
-                });*/
+                });
             }
 
-            if(flag==true)setInterval(loadDoc, 2000);
-
+            setInterval(loadDoc, 2000);
         </script>
 
 </body>

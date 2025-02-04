@@ -133,7 +133,7 @@
                         <td>teste</td>
                     </tr>`;
 
-                /*
+                
                 lances.forEach(lance => {
                     let linha = `<tr>
                         <td>${lance.nome_produto}</td>
@@ -141,7 +141,7 @@
                         <td>${lance.valor}</td>
                     </tr>`;
                     tabela.innerHTML += linha;
-                });*/
+                });
             }
 
             setInterval(loadDoc, 2000);
