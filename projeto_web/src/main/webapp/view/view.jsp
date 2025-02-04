@@ -127,19 +127,14 @@
                 </tr>`;
 
                 console.log(lances);
-                tabela.innerHTML += `<tr>
-                        <td>${lances[0].nome_produto}</td>
-                        <td>teste</td>
-                        <td>teste</td>
-                    </tr>`;
+                console.log(lances[0]);
+                console.log(lances[0].nome_produto);
+
+                tabela.innerHTML += "<tr><td>" + lances[0].nome_produto + "</td><td>teste</td><td>teste</td></tr>";
 
                 
                 lances.forEach(lance => {
-                    let linha = `<tr>
-                        <td>${lance.nome_produto}</td>
-                        <td>${lance.id_produto}</td>
-                        <td>${lance.valor}</td>
-                    </tr>`;
+                    let linha = "<tr><td>" + lance.nome_produto + "</td><td>" + lance.id_produto + "</td><td>" +lance.valor + "</td></tr>";
                     tabela.innerHTML += linha;
                 });
             }
