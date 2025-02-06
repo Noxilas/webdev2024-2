@@ -1,14 +1,18 @@
 package utilitarios;
-import java.util.List;
 
 public class Produto {
-    String nome;
+    String nome, descricao;
     int id;
+<<<<<<< HEAD
     double lance_minimo = 10;
+=======
+    
+>>>>>>> bb9f1dd (DAO + BD. Preciso fazer uns testes antes de terminar)
 
     public Produto(String nome, int id){
         this.nome = nome;
         this.id = id;
+        this.
     }
 
     // Getter para lance_minimo
@@ -30,6 +34,16 @@ public class Produto {
     // Setter para nome
     public void set_nome(String nome) {
         this.nome = nome;
+    }
+
+    // Getter para descricao
+    public String get_descricao() {
+        return descricao;
+    }
+
+    // Setter para descricao
+    public void set_descricao(String descricao) {
+        this.descricao = descricao;
     }
 
     // Getter para id
