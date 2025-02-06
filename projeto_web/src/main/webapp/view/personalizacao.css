@@ -14,12 +14,16 @@ body {
     width: 50%;
     display: inline-block;
     text-align: center;
+    margin: auto;
+    border-radius: 10px;
 }
 
 .direita{
-    background-color: aqua;
-    width: 50%;
+    background-color: rgb(208, 255, 0);
+    width: 35%;
     text-align: center;
+    margin: 0px auto auto auto;
+    border-radius: 10px;
 }
 
 table{
@@ -27,4 +31,19 @@ table{
     border-bottom: 2px solid black;
     margin: 0px auto 20px auto;   
 
+}
+
+#formulario{
+    margin: 20px 80px 20px 80px;
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    background-color: aquamarine;
+}
+
+input#id_usuario {
+    margin: 15px;
+}
+
+h1{
+    text-align: center;
 }

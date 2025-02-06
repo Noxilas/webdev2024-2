@@ -16,7 +16,7 @@
 
     <!-- <link rel="stylesheet" href="/meuProjeto/css/styles.css">-->
 </head>
-<body>
+<body onload="loadDoc()">
     <h1>Leilão</h1>
     <div class = "container">
         <div class="esquerda">
@@ -39,7 +39,7 @@
                 <tr>
                     <th>Nome do Produto</th>
                         <th>ID do Produto</th>
-                        <th>Valor do Produto</th>
+                        <th>Lance Mínimo</th>
                 </tr>
             </thead>
             <%for (Produto produto_recuperado : produtos){%>
@@ -65,11 +65,12 @@
             <% } %>
         </select>
         
+        <br>
         
         <label for="id_usuario">Id do usuário:</label>
-        <input type="text" id="id_usuario" name="id_usuario" > <%-- contém o ID do cliente, que vou supor o numero fixo "123"por enquanto --%>
+        <input type="text" id="id_usuario" name="id_usuario" > 
         
-
+            <br>
             <label for="valor">Valor do Produto:</label>
             <input type="number" id="valor" name="valor">
 
@@ -85,42 +86,24 @@
         <h2>Lista de lances</h2>
 
         <% List<Lance> lances = (List<Lance>)request.getAttribute("lista_de_lances"); %>
-        <%if(lances==null){%>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nome do Produto</th>
-                            <th>ID do Produto</th>
-                            <th>Valor do Produto</th>
-                    </tr>
-                </thead>
-                <%for (Produto produto_recuperado : produtos){%>
-                <tr>
-                    <td><%= produto_recuperado.get_nome() %></td>
-                    <td><%= produto_recuperado.get_id() %></td>
-                    <td><%= produto_recuperado.get_lance_minimo() %></td>
-                    
-                </tr>
-                <% }%>
-            </table>
-        <%}%>
-        <%if (lances!=null){%>
+        <%if (true){%>
             <table id="tabela_de_lances">
                 <thead>
                     <tr>
                         <th>Nome do Produto</th>
                         <th>ID do Produto</th>
-                        <th>Valor do Produto</th>
+                        <th>Maior Lance</th>
                     </tr>
                 </thead>
                 <tbody>
+                <%if (lances!=null){%>
                 <%for (Lance lance_recuperado : lances){%>
                     <tr>
                         <td><%= lance_recuperado.get_nome_produto() %></td>
                         <td><%= lance_recuperado.get_id() %></td>
                         <td><%= lance_recuperado.get_valor() %></td>
                                             </tr>
-                <% }}%>
+                <% }}}%>
                 </tbody>
             </table>
 

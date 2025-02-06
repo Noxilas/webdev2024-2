@@ -1,3 +1,5 @@
+////////////////////////////////////////////////////////
+//para ir ataulizando a lista:
 function desabilitar_botao(){
     $("#botaoenviar").prop("disabled", true);
     setTimeout(habilitar_botao, 2000); // Aguarda 2 segundos antes de chamar a segunda função
@@ -37,3 +39,8 @@ lances.forEach(lance => {
 }
 
 setInterval(loadDoc, 15000);
+
+////////////////////////////////////////////////////////
+//para carregar a lista inicial:
+
+
