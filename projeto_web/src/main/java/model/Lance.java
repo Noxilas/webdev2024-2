@@ -1,4 +1,4 @@
-package utilitarios;
+package model;
 //esta classe serve para ter os lances que serão recebido pelo view, ou seja, os lances devem conter:
 // -nome do produto
 // -valor do produto
@@ -7,8 +7,7 @@ package utilitarios;
 public class Lance {
     int id_produto;
     int id_usuario;
-    float valor_lance;
-    String time_stamp;
+    double valor_lance;
 
     // Construtor
     public Lance(int id_produto, int id_usuario, float valor_lance, String time_stamp) {

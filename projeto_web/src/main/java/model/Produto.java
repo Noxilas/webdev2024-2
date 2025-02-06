@@ -1,13 +1,9 @@
-package utilitarios;
+package model;
 
 public class Produto {
     String nome, descricao;
     int id;
-<<<<<<< HEAD
     double lance_minimo = 10;
-=======
-    
->>>>>>> bb9f1dd (DAO + BD. Preciso fazer uns testes antes de terminar)
 
     public Produto(String nome, int id){
         this.nome = nome;

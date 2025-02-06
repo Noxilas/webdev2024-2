@@ -1,4 +1,4 @@
-package utilitarios;
+package model;
 
 // Bean Usuario
 public class Usuario {

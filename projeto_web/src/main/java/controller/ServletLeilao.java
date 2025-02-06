@@ -9,11 +9,10 @@ import javax.servlet.http.Cookie; // classe java que permite usar cookies
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson; //conversão JSON
 
+import model.Lance;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import utilitarios.Lance;
 
 import javax.servlet.http.HttpServletRequest;
 

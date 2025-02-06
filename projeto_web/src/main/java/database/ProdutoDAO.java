@@ -1,11 +1,12 @@
 package model;
-package utilitarios;
+package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import utilitarios.Produto;
+
+import model.Produto;
 
 
 public class ProdutoDAO {
