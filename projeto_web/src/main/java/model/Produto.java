@@ -1,14 +1,14 @@
-package utilitarios;
-import java.util.List;
+package model;
 
 public class Produto {
-    String nome;
+    String nome, descricao;
     int id;
-    double lance_minimo = 10;
+    double lance_minimo;
 
-    public Produto(String nome, int id){
+    public Produto(String nome, int id, double lance_minimo){
         this.nome = nome;
         this.id = id;
+        this.lance_minimo = lance_minimo;
     }
 
     // Getter para lance_minimo
@@ -30,6 +30,16 @@ public class Produto {
     // Setter para nome
     public void set_nome(String nome) {
         this.nome = nome;
+    }
+
+    // Getter para descricao
+    public String get_descricao() {
+        return descricao;
+    }
+
+    // Setter para descricao
+    public void set_descricao(String descricao) {
+        this.descricao = descricao;
     }
 
     // Getter para id
