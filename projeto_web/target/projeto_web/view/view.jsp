@@ -71,7 +71,7 @@
         <input type="text" id="id_usuario" name="id_usuario" > 
         
             <br>
-            <label for="valor">Valor do Produto:</label>
+            <label for="valor">Valor do Lance:</label>
             <input type="number" id="valor" name="valor">
 
             <input type="submit" id = "botaoenviar" value="Enviar">

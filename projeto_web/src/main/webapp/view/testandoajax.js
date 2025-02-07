@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////
-//para ir ataulizando a lista:
+//para ir atualizando a lista:
 function desabilitar_botao(){
     $("#botaoenviar").prop("disabled", true);
     setTimeout(habilitar_botao, 2000); // Aguarda 2 segundos antes de chamar a segunda função
@@ -29,7 +29,7 @@ let tabela = document.getElementById("tabela_de_lances");
 tabela.innerHTML = `<tr>
     <th>Nome do Produto</th>
     <th>ID do Produto</th>
-    <th>Valor do Produto</th>
+    <th>Maior Lance</th>
 </tr>`;
 
 lances.forEach(lance => {
@@ -41,6 +41,6 @@ lances.forEach(lance => {
 setInterval(loadDoc, 15000);
 
 ////////////////////////////////////////////////////////
-//para carregar a lista inicial:
+
 
 

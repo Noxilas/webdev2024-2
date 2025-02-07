@@ -52,19 +52,7 @@ public class ServletLeilao extends HttpServlet {
         }
         */
 
-        //vamos gerar a lista com os lances já feitos:
-        // Criando a lista de lances
-        List<Lance> lances = new ArrayList<>();
 
-        // Adicionando objetos à lista
-        lances.add(new Lance("carro", 15, 15));
-        lances.add(new Lance("moto", 10, 5));
-        lances.add(new Lance("lancha", 1, 1));
-        
-        //vamos enviar a lista ao JSP:
-        request.setAttribute("lista_de_lances", lances);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("view/view.jsp");
-        dispatcher.forward(request, response);
     }
 
     @Override
@@ -77,9 +65,11 @@ public class ServletLeilao extends HttpServlet {
         List<Lance> lances = new ArrayList<>();
 
         // Adicionando objetos à lista
-        lances.add(new Lance("sorvete de cupuaçu", 5, 15));
-        lances.add(new Lance("sorvete de açaí", 10, 5));
-        lances.add(new Lance("sorvete da ufscar", 100, 1));
+        lances.add(new Lance("Carro", 20, 1));
+        lances.add(new Lance("Moto", 15, 2));
+        lances.add(new Lance("Lancha", 100, 3));
+        lances.add(new Lance("Aviao", 100, 4));
+
 
 
 
