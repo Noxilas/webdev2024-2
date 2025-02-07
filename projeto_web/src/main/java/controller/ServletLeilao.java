@@ -9,12 +9,14 @@ import javax.servlet.http.Cookie; // classe java que permite usar cookies
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson; //conversão JSON
 
+
 import database.LanceDAO;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Lance;
+import model.Produto;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -89,6 +91,19 @@ public class ServletLeilao extends HttpServlet {
          } catch (ClassNotFoundException e) {
              e.printStackTrace();
          } 
+
+         // Simula a recuperação dos produtos (idealmente, isso viria de um banco de dados)
+        List<Produto> produtos = new ArrayList<>();
+        produtos.add(new Produto("Carro", 1, 100));
+        produtos.add(new Produto("Moto", 2, 500));
+        produtos.add(new Produto("Lancha", 3, 20));
+        produtos.add(new Produto("Avião", 4, 90));
+
+        // Adiciona a lista de produtos ao request
+        request.setAttribute("lista_de_produtos", produtos);
+
+        // Encaminha a requisição para a página JSP
+        request.getRequestDispatcher("index.jsp").forward(request, response);
   
  
  

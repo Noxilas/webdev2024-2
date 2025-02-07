@@ -23,18 +23,10 @@
 
         <h2>Faça seu lance</h2>
 
-
-        <%
-            List<Produto> produtos = new ArrayList<>();
-            produtos.add(new Produto("Carro", 1));
-            produtos.add(new Produto("Moto", 2));
-            produtos.add(new Produto("Lancha", 3));
-            produtos.add(new Produto("Avião", 4));
-        %>
         
         <p>Os produtos disponiveis para leilão são:</p>
 
-        <table>
+        <table id="tabela_de_produtos">
             <thead>
                 <tr>
                     <th>Nome do Produto</th>
@@ -42,28 +34,15 @@
                         <th>Lance Mínimo</th>
                 </tr>
             </thead>
-            <%for (Produto produto_recuperado : produtos){%>
-            <tr>
-                <td><%= produto_recuperado.get_nome() %></td>
-                <td><%= produto_recuperado.get_id() %></td>
-                <td><%= produto_recuperado.get_lance_minimo() %></td>
-                
-            </tr>
-            <% }%>
+
         </table>
 
         
         
 
         <form id = "formulario" action="leilao" method="post">
-            <label for="produto">Nome do Produto:</label>
-        <select id="id_produto" name="id_produto">
-            <% for (Produto produto_recuperado : produtos) { %>
-                <option value="<%= produto_recuperado.get_id() %>">
-                    <%= produto_recuperado.get_nome() %>
-                </option>
-            <% } %>
-        </select>
+            <label for="id_produto">Id do usuário:</label>
+        <input type="text" id="id_produto" name="id_produto" > 
         
         <br>
         
