@@ -25,13 +25,15 @@ xhttp.send();
 function atualizar(lances) {
 let tabela = document.getElementById("tabela_de_lances"); 
 tabela.innerHTML = `<tr>
-    <th>Nome do Produto</th>
-    <th>ID do Produto</th>
-    <th>Valor do Produto</th>
+    <th>Usuário</th>
+    <th>Produto</th>
+    <th>ID Produto</th>
+    <th>Valor Lance</th>
+    <th>Horário</th>
 </tr>`;
 
 lances.forEach(lance => {
-    let linha = "<tr><td>" + lance.nome_produto + "</td><td>" + lance.id_produto + "</td><td>" +lance.valor + "</td></tr>";
+    let linha = "<tr><td>" + lance.nome_usuario + "</td><td>" + lance.nome_produto + "</td><td>" + lance.id_produto + "</td><td>" + lance.valor_lance + "</td><td>" + lance.time_stamp + "</td></tr>";
     tabela.innerHTML += linha;
 });
 }

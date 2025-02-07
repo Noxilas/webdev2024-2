@@ -3,12 +3,12 @@ package model;
 public class Produto {
     String nome, descricao;
     int id;
-    double lance_minimo = 10;
+    double lance_minimo;
 
-    public Produto(String nome, int id){
+    public Produto(String nome, int id, double lance_minimo){
         this.nome = nome;
         this.id = id;
-        this.
+        this.lance_minimo = lance_minimo;
     }
 
     // Getter para lance_minimo

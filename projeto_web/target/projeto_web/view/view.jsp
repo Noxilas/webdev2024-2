@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="utilitarios.Lance"%>
-<%@page import="utilitarios.Produto"%>
+<%@page import="model.Lance"%>
+<%@page import="model.Produto"%>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -26,10 +26,10 @@
 
         <%
             List<Produto> produtos = new ArrayList<>();
-            produtos.add(new Produto("Carro", 1));
-            produtos.add(new Produto("Moto", 2));
-            produtos.add(new Produto("Lancha", 3));
-            produtos.add(new Produto("Avião", 4));
+            produtos.add(new Produto("Porsche Panamera", 1, 1.0));
+            produtos.add(new Produto("1987 Walkman", 2, 1.0));
+            produtos.add(new Produto("Lancha", 3, 1.0));
+            produtos.add(new Produto("Avião", 4, 1.0));
         %>
         
         <p>Os produtos disponiveis para leilão são:</p>
@@ -89,37 +89,31 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Nome do Produto</th>
-                            <th>ID do Produto</th>
-                            <th>Valor do Produto</th>
+                        <th>Os lances aparecerão depois que você fizer um</th>
                     </tr>
                 </thead>
-                <%for (Produto produto_recuperado : produtos){%>
-                <tr>
-                    <td><%= produto_recuperado.get_nome() %></td>
-                    <td><%= produto_recuperado.get_id() %></td>
-                    <td><%= produto_recuperado.get_lance_minimo() %></td>
-                    
-                </tr>
-                <% }%>
             </table>
         <%}%>
         <%if (lances!=null){%>
             <table id="tabela_de_lances">
                 <thead>
                     <tr>
-                        <th>Nome do Produto</th>
-                        <th>ID do Produto</th>
-                        <th>Valor do Produto</th>
+                        <th>Usuário</th>
+                        <th>Produto</th>
+                        <th>ID Produto</th>
+                        <th>Valor Lance</th>
+                        <th>Horário</th>
                     </tr>
                 </thead>
                 <tbody>
                 <%for (Lance lance_recuperado : lances){%>
                     <tr>
+                        <td>><%= lance_recuperado.get_nome_usuario() %></td>
                         <td><%= lance_recuperado.get_nome_produto() %></td>
-                        <td><%= lance_recuperado.get_id() %></td>
-                        <td><%= lance_recuperado.get_valor() %></td>
-                                            </tr>
+                        <td><%= lance_recuperado.get_id_produto() %></td>
+                        <td><%= lance_recuperado.get_valor_lance() %></td>
+                        <td><%= lance_recuperado.get_time_stamp() %></td>
+                    </tr>
                 <% }}%>
                 </tbody>
             </table>
