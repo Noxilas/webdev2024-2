@@ -65,8 +65,8 @@ public class LanceDAO {
 
     }
 
-    public List<Lance> recuperarLances() throws ClassNotFoundException {
-        String select_bid_product_user_SQL = "SELECT user.name AS username, user.id AS id_user, product.name AS productname, product.id AS id_product, bid.price, bid.time_stamp FROM (bid INNER JOIN user ON bid.id_user=user.id) INNER JOIN product ON bid.id_product=product.id;";
+    public List<Lance> recuperarLances(int idProduto) throws ClassNotFoundException {
+        String select_bid_product_user_SQL = "SELECT user.name AS username, user.id AS id_user, product.name AS productname, product.id AS id_product, bid.price, bid.time_stamp FROM (bid INNER JOIN user ON bid.id_user=user.id) INNER JOIN product ON bid.id_product=product.id WHERE id_product= (?)";
         List<Lance> retorno = new ArrayList<>();
 
         try{
@@ -76,6 +76,8 @@ public class LanceDAO {
 
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/projeto_web", login, senha);
             PreparedStatement preparedStatement = connection.prepareStatement(select_bid_product_user_SQL);
+
+            preparedStatement.setInt(1, idProduto);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 

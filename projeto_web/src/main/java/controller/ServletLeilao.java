@@ -62,7 +62,7 @@ public class ServletLeilao extends HttpServlet {
         List<Lance> lances = new ArrayList<>();
 
         try {
-            lances = lanceDAO.recuperarLances();
+            lances = lanceDAO.recuperarLances(idProduto);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -79,8 +79,10 @@ public class ServletLeilao extends HttpServlet {
         LanceDAO lanceDAO = new LanceDAO();
         List<Lance> lances = new ArrayList<>();
         
+        int id_produto = Integer.parseInt(request.getParameter("id_produto"));
+
         try {
-            lances = lanceDAO.recuperarLances();
+            lances = lanceDAO.recuperarLances(id_produto);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } 
