@@ -10,7 +10,7 @@ body {
 }
 
 .esquerda {
-    background-color: deeppink;
+    background-color: #ede7a7;
     width: 50%;
     display: inline-block;
     text-align: center;
@@ -19,7 +19,7 @@ body {
 }
 
 .direita{
-    background-color: rgb(208, 255, 0);
+    background-color: #ede7a7;
     width: 35%;
     text-align: center;
     margin: 0px auto auto auto;
@@ -37,7 +37,8 @@ table{
     margin: 20px 80px 20px 80px;
     padding: 20px 20px 20px 20px;
     border-radius: 10px;
-    background-color: aquamarine;
+    background-color: #d5d98a;
+
 }
 
 input#id_usuario {
