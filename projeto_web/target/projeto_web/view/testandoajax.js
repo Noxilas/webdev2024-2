@@ -96,11 +96,10 @@ function atualizar_mensagem_erro(minimo){
     
         let valorLance = parseFloat($("#valor").val());
         let lanceMinimo = minimo; 
-        $("#erro-lance").show();
         //verificação
+        $("#erro-lance").show(); 
         if (valorLance < lanceMinimo) {
             $("#erro-lance").text("O lance deve ser maior ou igual a " + lanceMinimo + ".").css("color", "red");
-            
             
             event.preventDefault(); //aqui o lance nem é enviado ao controller
             setTimeout(() => {
