@@ -16,7 +16,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!--testando a verificação de lances-->
+    <!--acho que quando for puxar do bd, vai precisar de algumas outras alterações-->
     <script>
+        //pra puxar pelo controller, vamos usar um request get attribute, mas deve ser fácil
         $(document).ready(function() {
             $("#formulario").submit(function(event) {
                 let valorLance = parseFloat($("#valor").val());
@@ -50,8 +52,8 @@
             <thead>
                 <tr>
                     <th>Nome do Produto</th>
-                        <th>ID do Produto</th>
-                        <th>Lance Mínimo</th>
+                    <th>ID do Produto</th>
+                    <th>Lance Mínimo</th>
                 </tr>
             </thead>
 

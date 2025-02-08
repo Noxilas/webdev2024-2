@@ -58,7 +58,7 @@ function atualizar_tabela_produtos(produtos){
     console.log("oiiiiieee")
 
     //para a tabela de produtos:
-    tabela_de_produtos.innerHTML = "<tr><th>ID do Produto</th><th>ID do usuario</th><th>Valor Lancyyy</th></tr>";
+    tabela_de_produtos.innerHTML = "<tr><th>Nome do Produto</th><th>ID do Produto</th><th>Lance Mínimo</th></tr>";
 
     produtos.forEach(produto => {
         console.log(produto)
@@ -68,7 +68,7 @@ function atualizar_tabela_produtos(produtos){
     });
 }
 
-setInterval(loadDoc, 15000);
+//setInterval(loadDoc, 15000);
 window.onload = function() {
     ajax_pedir_produtos();
     //loadDoc();
