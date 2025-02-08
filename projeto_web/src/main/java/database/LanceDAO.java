@@ -70,7 +70,7 @@ public class LanceDAO {
         List<Lance> retorno = new ArrayList<>();
 
         try{
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
             String login = "root", senha = "";
 

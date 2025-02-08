@@ -84,8 +84,8 @@ public class ServletLeilao extends HttpServlet {
          //primeiro vamos buscar os lances no BD
          LanceDAO lanceDAO = new LanceDAO();
          
-        //int id_produto = Integer.parseInt(request.getParameter("id_produto"));
-        int id_produto = 2; //por enquanto vamos deixar fixo
+        int id_produto = Integer.parseInt(request.getParameter("id_produto"));
+        //int id_produto = 2; //por enquanto vamos deixar fixo
         List<Lance> lances = new ArrayList<>();
  
          try {
