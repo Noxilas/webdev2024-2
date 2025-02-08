@@ -66,7 +66,7 @@ public class LanceDAO {
     }
 
     public List<Lance> recuperarLances(int idProduto) throws ClassNotFoundException {
-        String select_bid_product_user_SQL = "SELECT user.name AS username, user.id AS id_user, product.name AS productname, product.id AS id_product, bid.price, bid.time_stamp FROM (bid INNER JOIN user ON bid.id_user=user.id) INNER JOIN product ON bid.id_product=product.id WHERE id_product= (?)";
+        String select_bid_product_user_SQL = "SELECT user.name AS username, user.id AS id_user, product.name AS productname, product.id AS id_product, bid.price, bid.time_stamp FROM (bid INNER JOIN user ON bid.id_user=user.id) INNER JOIN product ON bid.id_product=product.id WHERE id_product= (?) ORDER BY bid.price DESC";
         List<Lance> retorno = new ArrayList<>();
 
         try{

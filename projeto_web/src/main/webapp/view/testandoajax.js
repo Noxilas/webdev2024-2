@@ -54,7 +54,6 @@ function ajax_pedir_produtos(){
 }
 function atualizar_tabela_produtos(produtos){
     let tabela_de_produtos = document.getElementById("tabela_de_produtos");
-    console.log("oiiiiieee")
 
     //para a tabela de produtos:
     tabela_de_produtos.innerHTML = "<tr><th>Nome do Produto</th><th>ID do Produto</th><th>Lance Mínimo</th></tr>";
