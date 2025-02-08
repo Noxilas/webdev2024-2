@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="utilitarios.Lance"%>
-<%@page import="utilitarios.Produto"%>
+<%@page import="model.Lance"%>
+<%@page import="model.Produto"%>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -13,10 +13,13 @@
     <!--<link rel="stylesheet" type="text/css"  href="personalizacao.css">-->
     <link rel="stylesheet" type="text/css"  href="view/personalizacao.css">
     <script src="view/testandoajax.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
     <!-- <link rel="stylesheet" href="/meuProjeto/css/styles.css">-->
 </head>
-<body onload="loadDoc()">
+<!--<body onload="loadDoc()">-->
+<body>
     <h1>Leilão</h1>
     <div class = "container">
         <div class="esquerda">
@@ -26,7 +29,8 @@
         
         <p>Os produtos disponiveis para leilão são:</p>
 
-        <table id="tabela_de_produtos">
+        <table id="tabela_de_produtos" onload="ajax_pedir_produtos()">
+            
             <thead>
                 <tr>
                     <th>Nome do Produto</th>
@@ -41,7 +45,7 @@
         
 
         <form id = "formulario" action="leilao" method="post">
-            <label for="id_produto">Id do usuário:</label>
+            <label for="id_produto">Id do produto:</label>
         <input type="text" id="id_produto" name="id_produto" > 
         
         <br>
@@ -79,8 +83,8 @@
                 <%for (Lance lance_recuperado : lances){%>
                     <tr>
                         <td><%= lance_recuperado.get_nome_produto() %></td>
-                        <td><%= lance_recuperado.get_id() %></td>
-                        <td><%= lance_recuperado.get_valor() %></td>
+                        <td><%= lance_recuperado.get_id_usuario() %></td>
+                        <td><%= lance_recuperado.get_valor_lance() %></td>
                                             </tr>
                 <% }}}%>
                 </tbody>

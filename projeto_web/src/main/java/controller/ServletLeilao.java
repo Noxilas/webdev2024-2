@@ -78,6 +78,10 @@ public class ServletLeilao extends HttpServlet {
          dispatcher.forward(request, response);
     }
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //primeiro vamos buscar os 
+
+    /*
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          //primeiro vamos buscar os lances no BD
@@ -105,7 +109,7 @@ public class ServletLeilao extends HttpServlet {
         // Encaminha a requisição para a página JSP
         request.getRequestDispatcher("index.jsp").forward(request, response);
   
- 
+ /* 
  
          //agora que recuperamos os lances, precisamos ordená-los em ordem descrescente
          //vou usar um sort para isso
@@ -125,6 +129,6 @@ public class ServletLeilao extends HttpServlet {
          //retornar a resposta para o view
          response.setContentType("application/json");
          response.setCharacterEncoding("UTF-8");
-         response.getWriter().write(json);
+         response.getWriter().write(json);*/
      }
 }

@@ -1,0 +1,9 @@
+controller\ServletLeilao.class
+database\ProdutoDAO.class
+database\UsuarioDAO.class
+model\Lance.class
+model\Produto.class
+database\LanceDAO.class
+controller\ServletListaProdutos.class
+model\Usuario.class
+Hello.class
