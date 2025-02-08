@@ -83,23 +83,19 @@ public class ServletLeilao extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          //primeiro vamos buscar os lances no BD
          LanceDAO lanceDAO = new LanceDAO();
-         List<Lance> lances = new ArrayList<>();
          
-        /* int id_produto = Integer.parseInt(request.getParameter("id_produto"));
+        //int id_produto = Integer.parseInt(request.getParameter("id_produto"));
+        int id_produto = 2; //por enquanto vamos deixar fixo
+        List<Lance> lances = new ArrayList<>();
  
          try {
-             lances = lanceDAO.recuperarLances(id_produto);
+            lances = lanceDAO.recuperarLances(id_produto);
          } catch (ClassNotFoundException e) {
-             e.printStackTrace();
-         } */
+            e.printStackTrace();
+         } 
 
          //vamos fazer uma lista so pra teste
 
-        // Adicionando objetos à lista
-        lances.add(new Lance(1, 20, 1));
-        lances.add(new Lance(2, 15, 2));
-        lances.add(new Lance(3, 100, 3));
-        lances.add(new Lance(4, 100, 4));
 
         String json = new Gson().toJson(lances);
 

@@ -33,12 +33,7 @@ public class ServletListaProdutos extends HttpServlet {
         try {
             produtos = produto_dao.recuperarProdutos();
 
-            /* 
-            //por enquanto vou criar a lista, mas depois vou usar o DAO:
-            List<Produto> produtos = new ArrayList<>();
-            produtos.add(new Produto( "Notebook",15, 3500.00));
-            produtos.add(new Produto( "Mouse",5, 50.00));
-            produtos.add(new Produto( "Teclado",5, 120.00));*/
+   
             
             String json = new Gson().toJson(produtos);
             

@@ -69,7 +69,7 @@
         <input type="text" id="id_usuario" name="id_usuario" > 
         
             <br>
-            <label for="valor">Valor do Lancen:</label>
+            <label for="valor">Valor do Lance:</label>
             <input type="number" id="valor" name="valor">
 
             <!--mensagem de erro caso o lance seja menor-->

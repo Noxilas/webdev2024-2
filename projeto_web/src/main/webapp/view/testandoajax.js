@@ -1,6 +1,5 @@
 ////////////////////////////////////////////////////////
 //para ir atualizando a lista:
-/*
 function desabilitar_botao(){
     $("#botaoenviar").prop("disabled", true);
     setTimeout(habilitar_botao, 2000); // Aguarda 2 segundos antes de chamar a segunda função
@@ -39,7 +38,7 @@ lances.forEach(lance => {
     tabela.innerHTML += linha;
 });
 }
-*/
+
 
 function ajax_pedir_produtos(){
     const produtos_xhttp = new XMLHttpRequest();
@@ -68,8 +67,8 @@ function atualizar_tabela_produtos(produtos){
     });
 }
 
-//setInterval(loadDoc, 15000);
+setInterval(loadDoc, 15000);
 window.onload = function() {
     ajax_pedir_produtos();
-    //loadDoc();
+    loadDoc();
 };
