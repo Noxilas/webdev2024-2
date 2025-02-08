@@ -29,7 +29,7 @@
         
         <p>Os produtos disponiveis para leilão são:</p>
 
-        <table id="tabela_de_produtos" onload="ajax_pedir_produtos()">
+        <table id="tabela_de_produtos">
             
             <thead>
                 <tr>

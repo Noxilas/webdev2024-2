@@ -1,7 +1,5 @@
 ////////////////////////////////////////////////////////
 //para ir atualizando a lista:
-/*
-
 function desabilitar_botao(){
     $("#botaoenviar").prop("disabled", true);
     setTimeout(habilitar_botao, 2000); // Aguarda 2 segundos antes de chamar a segunda função
@@ -27,51 +25,21 @@ xhttp.send();
 }
 
 function atualizar(lances) {
-    let tabela_de_lances = document.getElementById("tabela_de_lances"); 
+let tabela = document.getElementById("tabela_de_lances"); 
+tabela.innerHTML = `<tr>
+    <th>Nome do Produto</th>
+    <th>ID do Produto</th>
+    <th>Maior Lance</th>
+</tr>`;
 
-    //para a tabela de produtos:
-    tabela_de_produtos.innerHTML = `<tr>
-        <th>Nome do Produto</th>
-        <th>ID do Produto</th>
-        <th>Maior Lance</th>
-    </tr>`;
-
-    lances.forEach(lance => {
-        //let linha = "<tr><td>" + lance.nome_produto + "</td><td>" + lance.id_produto + "</td><td>" +lance.valor + "</td></tr>";
-       // tabela_de_lances.innerHTML += linha;
-    });
-
-    //////////////////////////////////////////////////////////////////////
-    //para a tabela de produtos:
-    tabela_de_lances.innerHTML = `<tr>
-        <th>Usuário</th>
-        <th>Produto</th>
-        <th>ID Produto</th>
-        <th>Valor Lance</th>
-        <th>Horário</th>
-    </tr>`;
-
-    lances.forEach(lance => {
-        //let linha = "<tr><td>" + lance.nome_produto + "</td><td>" + lance.id_produto + "</td><td>" +lance.valor + "</td></tr>";
-        //tabela_de_lances.innerHTML += linha;
-    });
-
-
+lances.forEach(lance => {
+    let linha = "<tr><td>" + lance.nome_produto + "</td><td>" + lance.id_produto + "</td><td>" +lance.valor + "</td></tr>";
+    tabela.innerHTML += linha;
+});
 }
-////////////////////////////////////////////////////////
-//intervalo para ir chamando a função:
-setInterval(loadDoc, 15000);
 
-
-
-////////////////////////////////////////////////////////
-
-
-
-*/
 
 function ajax_pedir_produtos(){
-    console.log("oiiiiiiiiiiiiiiii")
     const produtos_xhttp = new XMLHttpRequest();
     produtos_xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -84,14 +52,20 @@ function ajax_pedir_produtos(){
     produtos_xhttp.send();
 }
 function atualizar_tabela_produtos(produtos){
-    let tabela_de_produtos = document.getElementsById("tabela_de_produtos");
+    let tabela_de_produtos = document.getElementById("tabela_de_produtos");
 
     //para a tabela de produtos:
     tabela_de_produtos.innerHTML = "<tr><th>Nome do Produto</th><th>ID do Produto</th><th>Lance Minimo</th></tr>";
 
     produtos.forEach(produto => {
         let linha = "<tr><td>" + produto.nome + "</td><td>" + produto.id + "</td><td>" +produto.lance_minimo + "</td></tr>";
-        tabela_de_lances.innerHTML += linha;
+        console.log(linha);
+        tabela_de_produtos.innerHTML += linha;
     });
 }
 
+setInterval(loadDoc, 15000);
+window.onload = function() {
+    ajax_pedir_produtos();
+    loadDoc()
+};
