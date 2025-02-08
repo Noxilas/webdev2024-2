@@ -15,6 +15,24 @@
     <script src="view/testandoajax.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <!--testando a verificação de lances-->
+    <!--acho que quando for puxar do bd, vai precisar de algumas outras alterações-->
+    <script>
+        //pra puxar pelo controller, vamos usar um request get attribute, mas deve ser fácil
+        $(document).ready(function() {
+            $("#formulario").submit(function(event) {
+                let valorLance = parseFloat($("#valor").val());
+                let lanceMinimo = 10; //testando com valor min = 10
+                //verificação
+                if (valorLance < lanceMinimo) {
+                    $("#erro-lance").text("O lance deve ser maior ou igual a " + lanceMinimo + ".").css("color", "red");
+                    event.preventDefault(); //aqui o lance nem é enviado ao controller
+                } else {
+                    $("#erro-lance").text(""); //caso o valor seja válido, a mensagem nao eh exibida
+                }
+            });
+        });
+    </script>
 
     <!-- <link rel="stylesheet" href="/meuProjeto/css/styles.css">-->
 </head>
@@ -41,9 +59,6 @@
 
         </table>
 
-        
-        
-
         <form id = "formulario" action="leilao" method="post">
             <label for="id_produto">Id do produto:</label>
         <input type="text" id="id_produto" name="id_produto" > 
@@ -56,6 +71,11 @@
             <br>
             <label for="valor">Valor do Lancen:</label>
             <input type="number" id="valor" name="valor">
+
+            <!--mensagem de erro caso o lance seja menor-->
+            <br>
+            <span id="erro-lance"></span>
+            <br>
 
             <input type="submit" id = "botaoenviar" value="Enviar">
         </form>

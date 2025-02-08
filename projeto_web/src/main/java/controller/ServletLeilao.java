@@ -1,11 +1,9 @@
 package controller;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.Cookie; // classe java que permite usar cookies
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson; //conversão JSON
 
@@ -16,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Lance;
-import model.Produto;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,7 +30,7 @@ public class ServletLeilao extends HttpServlet {
          LanceDAO lanceDAO = new LanceDAO();
  
          //precisamos verificar se o valor do lance é maior que o mínimo:
-         double minLance = 10;
+         /*double minLance = 10;
          
          try {
              minLance = lanceDAO.getLanceMinimo(idProduto);
@@ -43,13 +40,16 @@ public class ServletLeilao extends HttpServlet {
           
  
          if(valorLance < minLance) {
-             //usar o sendError, mas também poderia usar o setStatus
-             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "O lance deve ser maior que o valor mínimo estipulado.");
+             //vamos adicionar uma mensagem de erro à requisição ao invés de um send error
+             request.setAttribute("erro", "O lance deve ser maior que o valor mínimo estipulado.");
+             //agora redirecionar pra pág de lances
+             RequestDispatcher dispatcher = request.getRequestDispatcher("view/view.jsp");
+             dispatcher.forward(request, response);
+             //retornar pra não inserir no bd
              return;
-         }
+         }*/
  
- 
-         //caso o valor do lance esteja OK, vamos inserir o lance no BD
+         //vamos tentar inserir o lance no BD
          //para isso, vamos fazer um try
  
          try {
