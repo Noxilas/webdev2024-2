@@ -35,8 +35,36 @@ public class ProdutoDAO {
         }
         return result;
     }
+
+    public double recuperarValorMinimo(int id_produto) throws ClassNotFoundException {
+        double minValue = -1;
+        String select_min_value_bid = "SELECT reserve_price FROM product WHERE id = (?)";
+
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+
+            String login = "root", senha = "";
+
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/projeto_web", login, senha);
+            PreparedStatement preparedStatement = connection.prepareStatement(select_min_value_bid);
+
+            preparedStatement.setInt(1, id_produto);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                minValue = resultSet.getDouble("reserve_price");
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        
+        return minValue;
     
-        public List<Produto> recuperarProdutos() throws ClassNotFoundException {
+        
+    }
+
+    
+    public List<Produto> recuperarProdutos() throws ClassNotFoundException {
         String select_products_SQL = "SELECT * FROM product";
         List<Produto> retorno = new ArrayList<>();
 
@@ -54,7 +82,6 @@ public class ProdutoDAO {
                 Produto aux = new Produto(resultSet.getString(2), 0, resultSet.getDouble(3));
 
                 aux.set_id(resultSet.getInt(1));
-                //aux.set_descricao(resultSet.getString(3));
 
                 retorno.add(aux);
             }

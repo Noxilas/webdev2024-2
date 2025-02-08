@@ -28,18 +28,18 @@ function loadDoc(produto_selecionado){
 }
 
 function atualizar(lances) {
-let tabela = document.getElementById("tabela_de_lances"); 
-tabela.innerHTML = `<tr>
-    <th>ID do Produto</th>
-    <th>ID do Usuario</th>
-    <th>Valor Lance</th>
-</tr>`;
+    let tabela = document.getElementById("tabela_de_lances"); 
+    tabela.innerHTML = `<tr>
+        <th>ID do Produto</th>
+        <th>ID do Usuario</th>
+        <th>Valor Lance</th>
+    </tr>`;
 
-lances.forEach(lance => {
-    console.log(lance)
-    let linha = "<tr><td>" + lance.id_produto + "</td><td>" + lance.id_usuario + "</td><td>" +lance.valor_lance + "</td></tr>";
-    tabela.innerHTML += linha;
-});
+    lances.forEach(lance => {
+        console.log(lance)
+        let linha = "<tr><td>" + lance.id_produto + "</td><td>" + lance.id_usuario + "</td><td>" +lance.valor_lance + "</td></tr>";
+        tabela.innerHTML += linha;
+    });
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -71,6 +71,43 @@ function atualizar_tabela_produtos(produtos){
         tabela_de_produtos.innerHTML += linha;
     });
 }
+//////////////////////////////////////////////////////////////////////////////
+//para a mensagem de erro:
+function mensagem_erro(produto_selecionado){
+    if(!produto_selecionado)return;
+    const xhttp = new XMLHttpRequest();
+    desabilitar_botao();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            atualizar_mensagem_erro(JSON.parse(this.responseText)); // Converte JSON para objeto
+        }
+    };
+
+    // Adiciona o produto_selecionado como parâmetro na URL
+    const url = `erro?id_produto=${encodeURIComponent(produto_selecionado)}`;
+
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
+
+function atualizar_mensagem_erro(minimo){
+    console.log("entrou na funcao");
+    //pra puxar pelo controller, vamos usar um request get attribute, mas deve ser fácil
+    $("#formulario").submit(function(event) {
+        console.log("entrou dentro de dentro da funcao");
+    
+        let valorLance = parseFloat($("#valor").val());
+        let lanceMinimo = minimo; 
+        //verificação
+        if (valorLance < lanceMinimo) {
+            $("#erro-lance").text("O lance deve ser maior ou igual a " + lanceMinimo + ".").css("color", "red");
+            event.preventDefault(); //aqui o lance nem é enviado ao controller
+        } else {
+            $("#erro-lance").text(""); //caso o valor seja válido, a mensagem nao eh exibida
+        }
+    });
+
+}
 
 //////////////////////////////////////////////////////////////////////////////
 //para atualizar a tabela de lances assim que o produto é selecionado
@@ -80,6 +117,9 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("id_produto").addEventListener("blur", function() {
         produto_selecionado = this.value;
         loadDoc(produto_selecionado);
+        console.log("testando1");
+        mensagem_erro(produto_selecionado);
+        console.log("testando2");
     });
 });
 
