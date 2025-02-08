@@ -91,17 +91,21 @@ function mensagem_erro(produto_selecionado){
 }
 
 function atualizar_mensagem_erro(minimo){
-    console.log("entrou na funcao");
-    //pra puxar pelo controller, vamos usar um request get attribute, mas deve ser fácil
     $("#formulario").submit(function(event) {
         console.log("entrou dentro de dentro da funcao");
     
         let valorLance = parseFloat($("#valor").val());
         let lanceMinimo = minimo; 
+        $("#erro-lance").show();
         //verificação
         if (valorLance < lanceMinimo) {
             $("#erro-lance").text("O lance deve ser maior ou igual a " + lanceMinimo + ".").css("color", "red");
+            
+            
             event.preventDefault(); //aqui o lance nem é enviado ao controller
+            setTimeout(() => {
+                $("#erro-lance").fadeOut(500);
+            }, 2000);
         } else {
             $("#erro-lance").text(""); //caso o valor seja válido, a mensagem nao eh exibida
         }
@@ -117,9 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("id_produto").addEventListener("blur", function() {
         produto_selecionado = this.value;
         loadDoc(produto_selecionado);
-        console.log("testando1");
         mensagem_erro(produto_selecionado);
-        console.log("testando2");
     });
 });
 

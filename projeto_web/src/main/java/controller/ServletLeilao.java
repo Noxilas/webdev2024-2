@@ -29,29 +29,6 @@ public class ServletLeilao extends HttpServlet {
          double valorLance = Double.parseDouble(request.getParameter("valor"));
          LanceDAO lanceDAO = new LanceDAO();
  
-         //precisamos verificar se o valor do lance é maior que o mínimo:
-         /*double minLance = 10;
-         
-         try {
-             minLance = lanceDAO.getLanceMinimo(idProduto);
-         } catch (ClassNotFoundException e) {
-             e.printStackTrace();
-         }   // recuperar o valor mínimo
-          
- 
-         if(valorLance < minLance) {
-             //vamos adicionar uma mensagem de erro à requisição ao invés de um send error
-             request.setAttribute("erro", "O lance deve ser maior que o valor mínimo estipulado.");
-             //agora redirecionar pra pág de lances
-             RequestDispatcher dispatcher = request.getRequestDispatcher("view/view.jsp");
-             dispatcher.forward(request, response);
-             //retornar pra não inserir no bd
-             return;
-         }*/
- 
-         //vamos tentar inserir o lance no BD
-         //para isso, vamos fazer um try
- 
          try {
              //criar o objeto Lance
              Lance lance = new Lance(idProduto, idUsuario, valorLance);
