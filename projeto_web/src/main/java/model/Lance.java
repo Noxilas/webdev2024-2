@@ -38,6 +38,7 @@ public class Lance {
         return id_usuario;
     }
 
+    
     public void set_id_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
     }

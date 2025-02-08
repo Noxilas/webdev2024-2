@@ -1,7 +1,7 @@
 package model;
 
 public class Produto {
-    String nome, descricao;
+    String nome;
     int id;
     double lance_minimo;
 
@@ -31,7 +31,7 @@ public class Produto {
     public void set_nome(String nome) {
         this.nome = nome;
     }
-
+/* 
     // Getter para descricao
     public String get_descricao() {
         return descricao;
@@ -40,7 +40,7 @@ public class Produto {
     // Setter para descricao
     public void set_descricao(String descricao) {
         this.descricao = descricao;
-    }
+    }*/
 
     // Getter para id
     public int get_id() {

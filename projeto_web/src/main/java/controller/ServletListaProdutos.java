@@ -17,6 +17,7 @@ import java.util.List;
 
 import model.Lance;
 import model.Produto;
+import database.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,18 +30,26 @@ public class ServletListaProdutos extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
+        ProdutoDAO produto_dao = new ProdutoDAO();
+        List<Produto> produtos;
+        try {
+            produtos = produto_dao.recuperarProdutos();
 
-        //por enquanto vou criar a lista, mas depois vou usar o DAO:
-        List<Produto> produtos = new ArrayList<>();
-        produtos.add(new Produto( "Notebook",15, 3500.00));
-        produtos.add(new Produto( "Mouse",5, 50.00));
-        produtos.add(new Produto( "Teclado",5, 120.00));
-        
-        String json = new Gson().toJson(produtos);
-        
-        PrintWriter out = response.getWriter();
-        out.print(json);
-        out.flush();
+            /* 
+            //por enquanto vou criar a lista, mas depois vou usar o DAO:
+            List<Produto> produtos = new ArrayList<>();
+            produtos.add(new Produto( "Notebook",15, 3500.00));
+            produtos.add(new Produto( "Mouse",5, 50.00));
+            produtos.add(new Produto( "Teclado",5, 120.00));*/
+            
+            String json = new Gson().toJson(produtos);
+            
+            PrintWriter out = response.getWriter();
+            out.print(json);
+            out.flush();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
     

@@ -25,7 +25,7 @@ public class ProdutoDAO {
             PreparedStatement preparedStatement = connection.prepareStatement(insert_product_SQL);
 
             preparedStatement.setString(1, prd.get_nome());
-            preparedStatement.setString(2, prd.get_descricao());
+            //preparedStatement.setString(2, prd.get_descricao());
             preparedStatement.setDouble(3, prd.get_lance_minimo());
 
 
@@ -37,11 +37,11 @@ public class ProdutoDAO {
     }
     
         public List<Produto> recuperarProdutos() throws ClassNotFoundException {
-        String select_products_SQL = "SELECT * FROM produto";
+        String select_products_SQL = "SELECT * FROM product";
         List<Produto> retorno = new ArrayList<>();
 
         try{
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
             String login = "root", senha = "";
 
@@ -51,10 +51,10 @@ public class ProdutoDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()){
-                Produto aux = new Produto(resultSet.getString(2), 0, resultSet.getDouble(4));
+                Produto aux = new Produto(resultSet.getString(2), 0, resultSet.getDouble(3));
 
                 aux.set_id(resultSet.getInt(1));
-                aux.set_descricao(resultSet.getString(3));
+                //aux.set_descricao(resultSet.getString(3));
 
                 retorno.add(aux);
             }
