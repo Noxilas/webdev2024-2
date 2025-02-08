@@ -28,7 +28,9 @@ public class ServletListaProdutos extends HttpServlet {
         //vai tratar de retornar a lista de produtos
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        
+
+
+        //por enquanto vou criar a lista, mas depois vou usar o DAO:
         List<Produto> produtos = new ArrayList<>();
         produtos.add(new Produto( "Notebook",15, 3500.00));
         produtos.add(new Produto( "Mouse",5, 50.00));

@@ -78,57 +78,34 @@ public class ServletLeilao extends HttpServlet {
          dispatcher.forward(request, response);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //primeiro vamos buscar os 
 
-    /*
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          //primeiro vamos buscar os lances no BD
          LanceDAO lanceDAO = new LanceDAO();
          List<Lance> lances = new ArrayList<>();
          
-         int id_produto = Integer.parseInt(request.getParameter("id_produto"));
+        /* int id_produto = Integer.parseInt(request.getParameter("id_produto"));
  
          try {
              lances = lanceDAO.recuperarLances(id_produto);
          } catch (ClassNotFoundException e) {
              e.printStackTrace();
-         } 
+         } */
 
-         // Simula a recuperação dos produtos (idealmente, isso viria de um banco de dados)
-        List<Produto> produtos = new ArrayList<>();
-        produtos.add(new Produto("Carro", 1, 100));
-        produtos.add(new Produto("Moto", 2, 500));
-        produtos.add(new Produto("Lancha", 3, 20));
-        produtos.add(new Produto("Avião", 4, 90));
+         //vamos fazer uma lista so pra teste
 
-        // Adiciona a lista de produtos ao request
-        request.setAttribute("lista_de_produtos", produtos);
+        // Adicionando objetos à lista
+        lances.add(new Lance(1, 20, 1));
+        lances.add(new Lance(2, 15, 2));
+        lances.add(new Lance(3, 100, 3));
+        lances.add(new Lance(4, 100, 4));
 
-        // Encaminha a requisição para a página JSP
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-  
- /* 
- 
-         //agora que recuperamos os lances, precisamos ordená-los em ordem descrescente
-         //vou usar um sort para isso
-         //aqui, vamos usar o método sort da interface list de java, que ordena os elementos da lista
-         //vamos colocar um comparador como parâmetro para comparar as variaveis do tipo double
-         //esse comparativo vai retornar 1 se lance1 > lance2; -1 se lance1 < lance2 e 0 se lance1 == lance2
-         //estamos usando o lance1.getLance e lance2.getLance como lance1 e lance2 no compare
-         //como é pra ser descrescente, podemos inverter lance1 e lance2, como eu fiz
-         //desse modo, se lance2 > lance1, compare = 1, então lance2 deveria vir antes de lance1, mas com a inversão, o menor virá antes
-         //isso fez sentido na minha cabeça!!!
-         //lances.sort((lance1,lance2)-> Double.compare(lance2.getLance(), lance1.getLance()));
- 
-         //depois de ordenar, precisamos retornar a lista com os lances para o view
-         //como estamos usando o AJAX, vou enviar o arquivo JSON
-         String json = new Gson().toJson(lances);
-         System.err.println(json);
-         //retornar a resposta para o view
-         response.setContentType("application/json");
-         response.setCharacterEncoding("UTF-8");
-         response.getWriter().write(json);*/
+        String json = new Gson().toJson(lances);
+
+        //retornar a resposta para o view
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
      }
 }
