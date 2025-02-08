@@ -5,7 +5,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.Cookie; // classe java que permite usar cookies
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson; //conversão JSON
 
@@ -15,7 +14,6 @@ import database.LanceDAO;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Lance;
 import model.Produto;
 
 import javax.servlet.http.HttpServletRequest;
